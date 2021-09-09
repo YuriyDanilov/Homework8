@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script>
+
+        window.addEventListener("load", function () {
+            // let tab = function () {
+
+            //     //получаем список эл-тов по заданому классу
+            //     let tabTitle = document.querySelectorAll(".tab-title_item");
+            //     let tabBlock = document.querySelectorAll(".tab-block");
+            //     let tabData;
+
+            //     //добавляем обработчик событий на эл-ты (если клик - то сделать ...)
+            //     tabTitle.forEach(elem => {
+            //         elem.addEventListener("click", selectTab)
+            //     });
+
+            //     //убрать у всех эл-тов класс active, а на тот, который кликнули - добавить active
+            //     function selectTab() {
+            //         tabTitle.forEach(elem => {
+            //             elem.classList.remove("active")
+            //         })
+            //         this.classList.add("active");
+
+            //         //присваиваем переменной значение атрибута data активного эл-та
+            //         tabData = this.getAttribute("data-name");
+            //         selectTabBlock(tabData);
+            //     };
+
+            //     //проверяем эл-ты на наличие класса, присвоеного в tabData
+            //     function selectTabBlock(tabData) {
+            //         tabBlock.forEach(elem => {
+            //             //если находим - то добавляем класс active; если не находим - удаляем
+            //             elem.classList.contains(tabData) ? elem.classList.add("active") : elem.classList.remove("active");
+            //         })
+            //     }
+            // };
+
+            // tab();
+
+            // // ------------------------------------
+
+            // let data = function () {
+            //     let tableData = document.querySelectorAll("td");
+
+            //     tableData.forEach(e => {
+            //         e.addEventListener("click", selectTableData)
+            //     });
+
+            //     function selectTableData() {
+            //         this.classList.contains("red") ? this.classList.remove("red") : this.classList.add("red");
+            //     }
+            // }
+
+            // data();
+
+            //--------------------------------------
+            //});
+
+
+            // window.addEventListener("load", function () {
+
+            //     let table = document.querySelector("table");
+
+            //     table.addEventListener("click", function (e) {
+            //         let td = e.target;
+            //         td.matches(".red") ? td.classList.remove('red') : td.classList.add('red');
+            //     })
+
+            // });
+
+
+
+            let table = document.querySelector("table");
+
+            // table.addEventListener("click", function (e) {
+            //     let target = e.target;
+            //     target.matches(".red") ? target.classList.remove('red') : target.classList.add('red');
+            // })
+
+
+
+
+            let tr = document.querySelectorAll("tr"),
+                td = document.querySelectorAll("td"),
+                i = 2,
+                j = 2;
+            //console.log(td.length);
+            table.rows[i].cells[j].style.background = "red";
+
+            document.addEventListener("keyup", function (e) {
+
+                if (e.keyCode == '37' && j > 0) {
+                    table.rows[i].cells[j].style.background = "";
+                    j -= 1;
+                    return table.rows[i].cells[j].style.background = "red";
+
+                } else if (e.keyCode == '38' && i > 0) {
+                    table.rows[i].cells[j].style.background = "";
+                    i -= 1;
+                    return table.rows[i].cells[j].style.background = "blue";
+
+                } else if (e.keyCode == '39' && j < (td.length / tr.length - 1)) {
+                    table.rows[i].cells[j].style.background = "";
+                    j += 1;
+                    return table.rows[i].cells[j].style.background = "green";
+
+                } else if (e.keyCode == '40' && i < tr.length - 1) {
+                    table.rows[i].cells[j].style.background = "";
+                    i += 1;
+                    return table.rows[i].cells[j].style.background = "yellow";
+                }
+            })
+        });
+
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <table cellspacing="0">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

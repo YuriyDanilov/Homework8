@@ -1,0 +1,55 @@
+.wrapper {
+  padding-top: 50px;
+}
+
+.container {
+  max-width: 60%;
+  margin: 0 auto;
+  border: 1px solid black;
+  position: relative;
+}
+
+.tab-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tab-title_item {
+  min-width: 33.33%;
+  height: 40px;
+  text-align: center;
+}
+
+.tab-block {
+  height: 150px;
+  display: none;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}
+
+.active {
+  display: block;
+}
+
+table {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+td {
+  border: 1px solid #000;
+}
+/*# sourceMappingURL=style.css.map */
