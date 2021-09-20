@@ -16,8 +16,10 @@
         text-align: center;
     }
 }
-
-.tab-block {
+// .tab-block{
+//     height: 150px;
+//     }
+.tab-block_item {
     height: 150px;
     display: none;
 }
@@ -30,6 +32,9 @@
 }
 .green {
     background-color: green;
+}
+.blue {
+    background-color: blue;
 }
 
 .active {

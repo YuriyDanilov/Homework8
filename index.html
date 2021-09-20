@@ -18,32 +18,28 @@
 
             let tab = function () {
 
-                let tabTitle = document.querySelectorAll(".tab-title_item");
-                let tabBlock = document.querySelectorAll(".tab-block");
+                let tabTitle = document.querySelector(".tab-title");
+                let tabBlock = document.querySelector(".tab-block");
                 let tabName;
 
-                tabTitle.forEach(elem => {
-                    elem.addEventListener("click", selectTab)
-                });
+                tabTitle.addEventListener("click", function (e) {
+                    let target = e.target;
 
-                function selectTab() {
-                    tabTitle.forEach(elem => {
+                    for (let elem of tabTitle.children) {
                         elem.classList.remove("active");
                         elem.style.background = "none";
-                    })
-                    this.classList.add("active");
-                    // tabData = this.getAttribute("data-name");
-                    tabName = this.dataset.name;
-                    this.style.background = tabName;
-                    selectTabBlock(tabName);
-                };
+                    }
 
-                function selectTabBlock(tabName) {
+                    target.classList.add("active");
+                    tabName = target.dataset.color;
+                    target.style.backgroundColor = tabName;
 
-                    tabBlock.forEach(elem => {
-                        elem.classList.contains(tabName) ? elem.classList.add("active") : elem.classList.remove("active");
-                    })
-                }
+                    for (let elem of tabBlock.children) {
+                        elem.classList.remove("active");
+                        if (elem.classList.contains(tabName))
+                            elem.classList.add("active");
+                    }
+                });
             };
 
             tab();
@@ -56,6 +52,7 @@
 
             table.addEventListener("click", function (e) {
                 let target = e.target;
+
                 target.matches(".red") ? target.classList.remove('red') : target.classList.add('red');
             })
 
@@ -63,37 +60,44 @@
             //--------------------------------------------
             // //task3
 
+            table.addEventListener("click", (e) => {
+                let target = e.target;
+                let i = target.parentNode.rowIndex;
+                let j = target.cellIndex;
+                target.classList.add('red');
 
+                document.addEventListener("keyup", function (e) {
 
-            let tr = document.querySelectorAll("tr"),
-                td = document.querySelectorAll("td"),
-                i = 2,
-                j = 2;
-            //console.log(td.length);
-            table.rows[i].cells[j].style.background = "red";
+                    target.classList.remove('red')
+                    let tr = table.rows.length;
+                    let td;
 
-            document.addEventListener("keyup", function (e) {
+                    for (let row of table.rows) {
+                        td = row.cells.length;
+                    }
 
-                if (e.keyCode == '37' && j > 0) {
-                    table.rows[i].cells[j].style.background = "";
-                    j -= 1;
-                    return table.rows[i].cells[j].style.background = "red";
+                    if (e.keyCode == '37' && j > 0) {
+                        table.rows[i].cells[j].style.background = "";
+                        j -= 1;
+                        return table.rows[i].cells[j].style.background = "red";
 
-                } else if (e.keyCode == '38' && i > 0) {
-                    table.rows[i].cells[j].style.background = "";
-                    i -= 1;
-                    return table.rows[i].cells[j].style.background = "blue";
+                    } else if (e.keyCode == '38' && i > 0) {
+                        table.rows[i].cells[j].style.background = "";
+                        i -= 1;
+                        return table.rows[i].cells[j].style.background = "red";
 
-                } else if (e.keyCode == '39' && j < (td.length / tr.length - 1)) {
-                    table.rows[i].cells[j].style.background = "";
-                    j += 1;
-                    return table.rows[i].cells[j].style.background = "green";
+                    } else if (e.keyCode == '39' && j < td - 1) {
+                        table.rows[i].cells[j].style.background = "";
+                        j += 1;
+                        return table.rows[i].cells[j].style.background = "red";
 
-                } else if (e.keyCode == '40' && i < tr.length - 1) {
-                    table.rows[i].cells[j].style.background = "";
-                    i += 1;
-                    return table.rows[i].cells[j].style.background = "yellow";
-                }
+                    } else if (e.keyCode == '40' && i < tr - 1) {
+                        table.rows[i].cells[j].style.background = "";
+                        i += 1;
+                        return table.rows[i].cells[j].style.background = "red";
+                    }
+                })
+
             })
 
 
@@ -109,18 +113,20 @@
     <div class="wrapper">
         <div class="container">
             <div class="tab-title">
-                <button class="tab-title_item red active" data-name="red">red</button>
-                <button class="tab-title_item" data-name="yellow">yellow</button>
-                <button class="tab-title_item" data-name="green">green</button>
+                <button class="tab-title_item red active" data-color="red">red</button>
+                <button class="tab-title_item" data-color="yellow">yellow</button>
+                <button class="tab-title_item" data-color="green">green</button>
             </div>
+            <div class="tab-block">
+                <div class="tab-block_item red active">
+                </div>
 
-            <div class="tab-block red active 1">
-            </div>
+                <div class="tab-block_item yellow">
+                </div>
 
-            <div class="tab-block yellow 2">
-            </div>
+                <div class="tab-block_item green">
+                </div>
 
-            <div class="tab-block green 3">
             </div>
 
         </div>
@@ -144,7 +150,7 @@
         <tr>
             <td></td>
             <td></td>
-            <td class="red"></td>
+            <td></td>
             <td></td>
             <td></td>
         </tr>
